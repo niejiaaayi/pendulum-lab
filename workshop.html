@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学者工坊 · Scholar Workshop — 非线性单摆探究</title>
+<style>
+  :root{
+    --ink:#241b16; --ink-soft:#4a3b31; --parch:#f6efe1; --parch-2:#efe5d2;
+    --wine:#7b1f2b; --wine-dark:#5e1620; --brass:#b8912f; --line:#d8cbb0;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--parch); color:var(--ink);
+    font:16px/1.75 -apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",
+         "Noto Sans CJK SC",sans-serif;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 22px 72px}
+  header{
+    border-bottom:3px double var(--brass);
+    padding:44px 0 22px; margin-bottom:8px;
+  }
+  h1{margin:0 0 6px;font-size:31px;letter-spacing:.5px;line-height:1.25}
+  .latin{margin:0;color:var(--ink-soft);font-size:15px;letter-spacing:.4px}
+  .lede{margin:18px 0 0;color:var(--ink-soft);font-size:17px}
+  .cta{
+    margin:26px 0 10px;padding:20px 22px;background:var(--parch-2);
+    border:1px solid var(--line);border-radius:10px;
+  }
+  .btn{
+    display:inline-block;padding:12px 22px;background:var(--wine);color:#fff;
+    text-decoration:none;border-radius:8px;font-weight:600;letter-spacing:.3px;
+    border-bottom:3px solid var(--wine-dark);
+  }
+  .btn:hover{background:var(--wine-dark)}
+  .btn-note{margin:10px 0 0;font-size:14px;color:var(--ink-soft)}
+  .links{margin:6px 0 0;font-size:15px}
+  .links a{color:var(--wine);text-decoration:none;border-bottom:1px solid rgba(123,31,43,.35)}
+  .links a:hover{border-bottom-color:var(--wine)}
+  h2{
+    margin:44px 0 4px;font-size:22px;padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  h3{margin:26px 0 4px;font-size:17px}
+  p{margin:8px 0}
+  ul{margin:8px 0 8px 1.1em;padding:0}
+  li{margin:4px 0}
+  code{
+    background:var(--parch-2);padding:1px 5px;border-radius:4px;
+    font-family:ui-monospace,Consolas,"Courier New",monospace;font-size:.94em;
+  }
+  .kv{margin:10px 0;border-left:3px solid var(--brass);padding-left:14px}
+  .kv dt{font-weight:600;margin-top:8px}
+  .kv dd{margin:2px 0 0;color:var(--ink-soft)}
+  .note{
+    margin:16px 0;padding:12px 14px;background:#fbf6ea;
+    border:1px solid var(--line);border-left:4px solid var(--brass);border-radius:6px;
+    font-size:15px;
+  }
+  .tag{
+    display:inline-block;font-size:12px;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--wine);border:1px solid rgba(123,31,43,.3);border-radius:999px;
+    padding:2px 9px;margin-bottom:10px;
+  }
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:var(--parch-2);font-weight:600}
+  footer{
+    margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:14px;color:var(--ink-soft);
+  }
+  @media (max-width:560px){
+    h1{font-size:25px} body{font-size:15px}
+    header{padding-top:30px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">课堂版 · Classroom build</span>
+  <h1>学者工坊：非线性单摆探究</h1>
+  <p class="latin">Scholar Workshop — Investigating the Non-linear Pendulum</p>
+  <p class="lede">
+    一个用来讲“摆长与周期”“大角度偏差”“不同重力下的摆动”的桌面小工坊。
+    调参数、看动画、量周期、记数据、写结论，四张探究卷册对应四个课堂任务。
+  </p>
+</header>
+
+<section class="cta">
+  <a class="btn" href="https://github.com/niejiaaayi/pendulum-lab/releases/download/v1.0/xuezhe-workshop.exe">
+    下载 Windows 版（.exe）
+  </a>
+  <p class="btn-note">
+    双击即可运行，<strong>不需要安装 Python</strong>。约 11 MB。
+    内置<strong>简中／繁中／English</strong> 三语新手导引：打开程序后点顶部「如何使用」页签，或按 <code>F1</code>。
+  </p>
+  <p class="links">
+    也可以：
+    <a href="https://github.com/niejiaaayi/pendulum-lab/releases/download/v1.0/user-guide-zh.md">下载这份指引（.md）</a>
+    ·
+    <a href="https://github.com/niejiaaayi/pendulum-lab/tree/main/pendulum-simulation">查看源码</a>
+    ·
+    <a href="https://niejiaaayi.github.io/pendulum-lab/">旧版在线预览（无导引）</a>
+  </p>
+</section>
+
+<h2>1　快速上手</h2>
+
+<p>程序分两个工作区：<strong>实验工坊</strong>用来调参数、观察单摆和记录数据；<strong>探究卷册</strong>用来选任务、填预测和结论、看进度。右上角可切换简中、繁中、英文。</p>
+
+<ul>
+  <li><strong>第一步 · 设置并运行</strong>：拖动摆长、初始角度、重力加速度滑块，然后点「开始」。首次体验保持默认的 1 m、15°、地球重力 9.81 m/s² 即可。</li>
+  <li><strong>第二步 · 观察并记录</strong>：看摆动动画、摆角—时间曲线和周期读数。出现模拟周期后，点「记录本次实验」，数据才会进表格。只点开始或暂停<em>不会</em>保存记录。</li>
+  <li><strong>第三步 · 做任务并导出</strong>：进「探究卷册」选一卷，用预设参数逐组运行、记录；回卷册写结论并检查完成状态。离开程序前导出 CSV 和 JSON。</li>
+</ul>
+
+<h2>2　按键与滑块</h2>
+
+<dl class="kv">
+  <dt>三个参数滑块</dt>
+  <dd>
+    摆长 <code>0.2–2.0 m</code>（悬挂点到摆球重心）；
+    初始角度 <code>5–60°</code>（从平衡位置偏开的释放角度）；
+    重力加速度 <code>1.6–20 m/s²</code>。
+    点中滑块后可用方向键微调，<code>Home</code> / <code>End</code> 跳到最小、最大值。
+  </dd>
+
+  <dt>调整参数时会发生什么</dt>
+  <dd>任一参数变化都会重置本次模拟的时间与曲线，并从新位置重新释放。运行时拖动滑块会先暂停预览，松手后自动继续（原本暂停的保持暂停）。<strong>已记录的数据不受影响。</strong></dd>
+
+  <dt>地球／月球</dt>
+  <dd>把重力设为 9.81 或 1.62 m/s²，保留当前摆长和角度并重置模拟；若正在运行，会按新参数继续。</dd>
+
+  <dt>开始／暂停、重置、单步</dt>
+  <dd>
+    运行中按钮变为「暂停」，再点一次从当前位置继续（卷二必须先填预测才能开始）。
+    「重置」停止运动、保留参数、回到释放位置。
+    「单步前进 0.02 s」暂停连续运动、推进约 0.02 秒，适合逐步观察。
+    两者都不删除已记录的数据。
+  </dd>
+
+  <dt>播放速度与恢复默认参数</dt>
+  <dd>播放速度可选 0.25×／0.5×／1×／2×，<strong>只改变观看速度，不改变物理周期</strong>。恢复默认参数会停止运动并回到 1 m、15°、9.81 m/s²，播放速度不变。</dd>
+
+  <dt>记录与导出</dt>
+  <dd>周期测得后，「记录本次实验」把当前参数、模拟周期、小角度公式周期和偏差加入表格；任务进度只接受与当前任务预设匹配的新记录。「导出 CSV」把表格全部记录存到你选的位置，可用 Excel 打开。</dd>
+
+  <dt>清空记录</dt>
+  <dd>清除整张实验表格，同时清除四卷的数据进度与完成标记；预测与结论文字保留，卷二中已锁定的预测仍然锁定。<strong>需要保留数据请先导出。</strong></dd>
+</dl>
+
+<h2>3　四张探究卷册</h2>
+
+<table>
+  <tr><th>卷册</th><th>要做什么</th><th>判据</th></tr>
+  <tr>
+    <td><strong>卷一 · 寻找规律</strong></td>
+    <td>固定 10° 与 <code>g = 9.81</code>，依次记录 0.25、0.5、1、1.5、2 m 五种摆长的周期。</td>
+    <td>结论要说明摆长增加时周期怎样变化，并引用至少两组数据。</td>
+  </tr>
+  <tr>
+    <td><strong>卷二 · 检验猜想</strong></td>
+    <td>先预测：摆长从 0.25 m 变为 1 m（四倍），周期会变成几倍？写下理由，再在 10° 与地球重力下运行两组。</td>
+    <td>数据齐全后显示「第二组 ÷ 第一组」的周期比，用它检验原预测。<em>卷一的旧数据不计入卷二。</em></td>
+  </tr>
+  <tr>
+    <td><strong>卷三 · 审视模型</strong></td>
+    <td>固定 1 m 与地球重力，依次记录 5°、15°、30°、60°，比较模拟周期与小角度公式的偏差。</td>
+    <td>找出已测角度中<strong>首次超过 2%</strong> 的角度。这是课堂判据，不是通用物理边界。</td>
+  </tr>
+  <tr>
+    <td><strong>卷四 · 两地之摆</strong></td>
+    <td>固定 1 m 与 10°，记录地球 <code>9.81</code> 与月球 <code>1.62 m/s²</code> 两组数据。</td>
+    <td>比较周期比，并解释重力变化对摆动快慢的影响。</td>
+  </tr>
+</table>
+
+<p><strong>操作顺序</strong>：① 点一张任务卡 → ② 读说明并填预测（卷二必填，首次开始后锁定）→ ③ 点一组参数预设，自动跳到实验工坊，再点开始 → ④ 周期出现后点「记录本次实验」→ ⑤ 回卷册确认该组已勾选，重复 ③④ 直到齐全 → ⑥ 引用数据写结论，点「检查并完成当前任务」，最后导出任务报告。</p>
+
+<div class="note">
+  「已记录／所需组数」只统计<strong>不同</strong>的预设参数组；重复记录同一组会更新该组数据，不会增加组数。
+  全部组数齐全<strong>且</strong>结论非空才会出现完成印章 —— 印章表示「已提交」，不代表程序判断结论正确。
+</div>
+
+<h2>4　读懂结果</h2>
+
+<ul>
+  <li><strong>时间与角度</strong>：时间用模拟秒；当前角度带正负号，表示摆球在平衡位置两侧。曲线只显示最近 15 秒，看相邻波峰之间的时间可帮助理解周期。</li>
+  <li><strong>为什么显示「等待测量」</strong>：程序按连续两次从右向左经过平衡位置的时间差测周期，刚开始没有读数。重置或改参数后要重新等待；摆越长、月球重力下通常等得越久。</li>
+  <li><strong>完整周期数</strong>：按相邻同向过零之间的完整区间计数，不是从释放瞬间开始数，所以可能比直觉少。</li>
+  <li><strong>模拟周期、小角度公式与偏差</strong>：模拟周期来自非线性单摆运动；对照公式 <code>T₀ = 2π√(L/g)</code>；偏差 =（模拟周期 − T₀）÷ T₀ × 100%。大角度下两者不同，反映的是模型近似的适用条件，<strong>不是真实实验的统计误差</strong>。</li>
+</ul>
+
+<h2>5　保存与常见问题</h2>
+
+<dl class="kv">
+  <dt>CSV 和任务报告分别保存什么</dt>
+  <dd>「导出 CSV」存实验表格中全部参数与周期记录，适合继续绘图分析；「导出任务报告」存四卷的预测、结论、完成状态和分任务数据（JSON）。建议用能区分学生或小组的文件名。</dd>
+
+  <dt>关闭后能继续原来的进度吗</dt>
+  <dd><strong>当前版本不自动保存，也不能导入任务报告恢复进度。</strong>关闭前请导出 CSV 和 JSON；重新启动会从空记录开始。</dd>
+
+  <dt>记录了却没有增加任务进度</dt>
+  <dd>检查是否先选了正确任务，以及摆长、角度、重力是否与该任务预设完全匹配 —— 建议直接点预设按钮。旧任务或自由实验的数据不会自动转入当前任务。</dd>
+
+  <dt>预测不能改，或任务无法完成</dt>
+  <dd>卷二首次开始或单步后锁定原预测，请在结论中比较结果并说明是否改变想法。任务无法完成时，先确认所有预设组已记录、结论已填写，再点完成按钮。</dd>
+
+  <dt>窗口较小时怎么看</dt>
+  <dd>放大窗口即可；探究卷册右侧与本指引都支持滚动条或滚轮，指引文字可选中复制。</dd>
+</dl>
+
+<footer>
+  <p>
+    学者工坊 v1.0 · 面向课堂的非线性单摆探究工具。
+    物理模型为非线性单摆方程，固定步长四阶 Runge–Kutta 积分。
+  </p>
+  <p>
+    <a href="https://github.com/niejiaaayi/pendulum-lab/tree/main/pendulum-simulation">源码</a> ·
+    <a href="https://github.com/niejiaaayi/pendulum-lab/releases/tag/v1.0">发布版</a> ·
+    <a href="https://niejiaaayi.github.io/pendulum-lab/">在线预览版</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
